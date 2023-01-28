@@ -4,11 +4,12 @@ import axios from 'axios';
 import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
-console.log(SimpleLightbox);
-
 const searchForm = document.querySelector('#search-form');
 const gallery = document.querySelector('.gallery');
 const buttonLoadMore = document.querySelector('.load-more');
+
+document.cookie = 'promo_shown=1; Max-Age=2600000; Secure';
+('promo_shown=1; Max-Age=2600000; Secure');
 
 const BASE_URL = 'https://pixabay.com/api/';
 const keyApi = '33175218-249cfa9e0adbf794a9bfb1ae0';
@@ -115,20 +116,15 @@ function newLightbox() {
 
 function lightboxMarkup(markup) {
   gallery.insertAdjacentHTML('beforeend', markup);
-  // lightbox.refresh();
   newLightbox(markup);
-  // lightbox.refresh();
 }
 
 async function onClick() {
   page += 1;
-  // lightbox.refresh();
   await fetchImg(searchImg, page)
     .then(data => {
       requestGallery = createGalleryMarkup(data.hits);
-      // gallery.insertAdjacentHTML('beforeend', requestGallery);
       lightboxMarkup(requestGallery);
-      // lightbox.refresh();
       console.log(page);
       if (perPage * page > data.totalHits) {
         buttonLoadMore.hidden = true;
