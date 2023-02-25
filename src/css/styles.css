@@ -161,4 +161,6 @@ input:hover {
 input::placeholder {
   color: rgb(102, 99, 99);
   padding-left: 5px;
+  padding-left: 5px;
 }
+
